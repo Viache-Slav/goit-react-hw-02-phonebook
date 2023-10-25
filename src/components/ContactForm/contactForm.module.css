@@ -1,0 +1,27 @@
+.container {
+  display: inline-block;
+  border: 1px solid #111010;
+  padding: 0px 100px 20px 10px;
+}
+
+.button {
+  margin-top: 20px;
+  border-radius: 4px;
+  border-color: aliceblue;
+  padding: 5px 20px;
+  background-color: #fff;
+}
+
+.button:hover {
+  background-color: bisque;
+  cursor: pointer;
+}
+
+.input {
+  border-color: aliceblue;
+}
+
+.input:focus {
+  outline: none;
+  border-color: rgb(240, 174, 112);
+}
