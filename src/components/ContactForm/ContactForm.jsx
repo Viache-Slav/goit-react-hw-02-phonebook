@@ -24,7 +24,7 @@ class ContactForm extends Component {
     return (
         <div className={css.container}>
             <h2>Name</h2>
-            <form onSubmit={this.handleSubmit}>
+            <form className={css.form} onSubmit={this.handleSubmit}>
                 <input className={css.input}
                 type="text"
                 name="name"
@@ -34,10 +34,10 @@ class ContactForm extends Component {
                 value={name}
                 onChange={this.handleChange}
                 />
+                <button className={css.button} type="submit">
+                  Add contact
+                </button>
             </form>
-            <button className={css.button} type="submit">
-              Add contact
-              </button>
         </div>    
     );
   }
