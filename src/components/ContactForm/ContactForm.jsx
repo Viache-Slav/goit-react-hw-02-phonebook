@@ -35,6 +35,7 @@ class ContactForm extends Component {
                 required
                 value={name}
                 onChange={this.handleChange}
+                placeholder='Enter name'
               />{' '}
 
               <h2>Number</h2>
@@ -46,6 +47,7 @@ class ContactForm extends Component {
                 required
                 value={number}
                 onChange={this.handleChange}
+                placeholder='Enter number'
               />{' '}
 
               <button className={css.button} type="submit">
