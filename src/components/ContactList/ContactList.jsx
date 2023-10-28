@@ -1,5 +1,6 @@
 import React from 'react';
 import css from './contactList.module.css'
+import PropTypes from 'prop-types';
 
 const icon = "📳";
 
@@ -18,5 +19,10 @@ const ContactList = ({ contacts, onDeleteContact }) => (
     ))}
   </>
 );
+
+ContactList.propTypes = {
+  contacts: PropTypes.array.isRequired,
+  onDeleteContact: PropTypes.func.isRequired,
+};
 
 export default ContactList;
