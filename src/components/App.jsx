@@ -3,6 +3,8 @@ import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
 import Filter from './Filter/Filter';
+// eslint-disable-next-line
+import css from './app.module.css';
 
 class App extends Component {
   state = {
@@ -48,6 +50,12 @@ class App extends Component {
     this.setState({ [name]: value });
   };
   
+  handleDeleteContact = (contactId) => {
+    this.setState((prevState) => ({
+      contacts: prevState.contacts.filter((contact) => contact.id !== contactId),
+    }));
+  };
+  
 
   render() {
     const { contacts, filter } = this.state;
@@ -63,7 +71,10 @@ class App extends Component {
         
         <h2>Contacts</h2>
         <Filter value={filter} onChange={this.handleFilterChange} />
-        <ContactList contacts={filteredContacts} />
+        <ContactList 
+          contacts={filteredContacts} 
+          onDeleteContact={this.handleDeleteContact}
+        />
       </div>
     );
   }
