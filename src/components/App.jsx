@@ -6,18 +6,20 @@ import ContactList from './ContactList/ContactList';
 class App extends Component {
   state = {
     contacts: [
-      { id: 'id-1', name: 'Andriy Shevchenko' },
-      { id: 'id-2', name: 'Vitali Klitschko' },
-      { id: 'id-3', name: 'Volodymyr Zelensky' },
-      { id: 'id-4', name: 'Vasyl Virastyuk' },
-      { id: 'id-5', name: 'Viaczeslav Fedko' },
+      { id: 'id-1', name: 'Andriy Shevchenko', number: '645-17-79' },
+      { id: 'id-2', name: 'Vitali Klitschko', number: '658-25-63' },
+      { id: 'id-3', name: 'Volodymyr Zelensky', number: '698-45-75' },
+      { id: 'id-4', name: 'Vasyl Virastyuk', number: '158-35-61' },
     ],
     name: '',
+    number: '',
   };
 
-  handleAddContact = (name) => {
+  handleAddContact = (name, number) => {
     const { contacts } = this.state;
-    const contactNames = contacts.map(contact => contact.name);
+    const contactNames = contacts.map(contact => {
+      return contact.name;
+    });
 
     if (contactNames.includes(name)) {
       alert(`${name} is already in contacts`);
@@ -27,6 +29,7 @@ class App extends Component {
     const newContact = {
       id: nanoid(),
       name,
+      number,
     };
 
     this.setState(prevState => ({
