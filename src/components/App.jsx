@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm/ContactForm';
 import ContactList from './ContactList/ContactList';
+import Filter from './Filter/Filter';
 
 class App extends Component {
   state = {
@@ -13,16 +14,21 @@ class App extends Component {
     ],
     name: '',
     number: '',
+    filter: '',
   };
 
   handleAddContact = (name, number) => {
     const { contacts } = this.state;
-    const contactNames = contacts.map(contact => {
-      return contact.name;
-    });
+    const contactNames = contacts.map((contact) => contact.name);
+    const contactNumbers = contacts.map((contact) => contact.number);
 
     if (contactNames.includes(name)) {
       alert(`${name} is already in contacts`);
+      return;
+    }
+  
+    if (contactNumbers.includes(number)) {
+      alert(`${number} is already in contacts`);
       return;
     }
 
@@ -36,10 +42,19 @@ class App extends Component {
       contacts: [...prevState.contacts, newContact],
     }));
   };
+
+  handleFilterChange = (event) => {
+    const { name, value } = event.target;
+    this.setState({ [name]: value });
+  };
   
 
   render() {
-    const { contacts } = this.state;
+    const { contacts, filter } = this.state;
+
+    const filteredContacts = contacts.filter((contact) =>
+    contact.name.toLowerCase().includes(filter.toLowerCase())
+    );
 
     return (
       <div>
@@ -47,7 +62,8 @@ class App extends Component {
         <ContactForm onSubmit={this.handleAddContact} />
         
         <h2>Contacts</h2>
-        <ContactList contacts={contacts} />
+        <Filter value={filter} onChange={this.handleFilterChange} />
+        <ContactList contacts={filteredContacts} />
       </div>
     );
   }
